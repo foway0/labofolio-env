@@ -1,0 +1,7 @@
+# jetbrains
+.idea
+
+# repos
+/repos/*
+!/repos/repos.sh
+!/repos/repos.conf
