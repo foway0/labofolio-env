@@ -3,9 +3,10 @@ services:
   web:
     build: ../repos/labofolio
     image: foway/web
-    command: node index.js
+    command: npm start
     volumes:
-      - .:/usr/app/
-      - /usr/app/node_modules
+      - "$PWD/../repos/labofolio/api:/user/app/api"
+      - "$PWD/../repos/labofolio/index.js:/user/app/index.js"
+      - "$PWD/../repos/labofolio/package.json:/user/package.json"
     ports:
       - 8080:3000
