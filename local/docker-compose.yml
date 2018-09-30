@@ -5,8 +5,10 @@ services:
     image: foway/web
     command: npm start
     volumes:
-      - "$PWD/../repos/labofolio/api:/user/app/api"
-      - "$PWD/../repos/labofolio/index.js:/user/app/index.js"
-      - "$PWD/../repos/labofolio/package.json:/user/package.json"
+      - "$PWD/../repos/labofolio/api:/usr/src/app/api"
+      - "$PWD/../repos/labofolio/core:/usr/src/app/core"
+      - "$PWD/../repos/labofolio/app.js:/usr/src/app/app.js"
+      - "$PWD/../repos/labofolio/package.json:/usr/src/app/package.json"
+      - "$PWD/../repos/labofolio/package-lock.json:/usr/src/app/package-lock.json"
     ports:
-      - 8080:3000
+      - 3000:3000
