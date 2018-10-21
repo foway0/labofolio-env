@@ -13,38 +13,26 @@ services:
       - 3001:3000
     hostname: local-web1
     depends_on:
-      - local-store
+    - local-store
     environment:
     - SERVICE_PORT=3000
     - SERVICE_ENV=local
     - SERVICE_MODE=api
 
   web2:
-    build: ../repos/labofolio
-    volumes:
-    - "$PWD/../repos/labofolio/api:/usr/src/app/api"
-    - "$PWD/../repos/labofolio/core:/usr/src/app/core"
-    - "$PWD/../repos/labofolio/app.js:/usr/src/app/app.js"
-    - "$PWD/../repos/labofolio/package.json:/usr/src/app/package.json"
-    - "$PWD/../repos/labofolio/package-lock.json:/usr/src/app/package-lock.json"
+    image: foway/web
     ports:
     - 3002:3000
     hostname: local-web2
     depends_on:
-      - local-store
+    - local-store
     environment:
     - SERVICE_PORT=3000
     - SERVICE_ENV=local
     - SERVICE_MODE=api
 
   web3:
-    build: ../repos/labofolio
-    volumes:
-    - "$PWD/../repos/labofolio/api:/usr/src/app/api"
-    - "$PWD/../repos/labofolio/core:/usr/src/app/core"
-    - "$PWD/../repos/labofolio/app.js:/usr/src/app/app.js"
-    - "$PWD/../repos/labofolio/package.json:/usr/src/app/package.json"
-    - "$PWD/../repos/labofolio/package-lock.json:/usr/src/app/package-lock.json"
+    image: foway/web
     ports:
     - 3003:3000
     hostname: local-web3
