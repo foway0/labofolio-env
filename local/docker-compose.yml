@@ -1,9 +1,8 @@
 version: '2'
 services:
-  web:
+  web1:
     build: ../repos/labofolio
     image: foway/web
-    command: npm start
     volumes:
       - "$PWD/../repos/labofolio/api:/usr/src/app/api"
       - "$PWD/../repos/labofolio/core:/usr/src/app/core"
@@ -11,7 +10,8 @@ services:
       - "$PWD/../repos/labofolio/package.json:/usr/src/app/package.json"
       - "$PWD/../repos/labofolio/package-lock.json:/usr/src/app/package-lock.json"
     ports:
-      - 3000:3000
+      - 3001:3000
+    hostname: local-web1
     depends_on:
       - local-store
     environment:
@@ -19,8 +19,44 @@ services:
     - SERVICE_ENV=local
     - SERVICE_MODE=api
 
+  web2:
+    build: ../repos/labofolio
+    volumes:
+    - "$PWD/../repos/labofolio/api:/usr/src/app/api"
+    - "$PWD/../repos/labofolio/core:/usr/src/app/core"
+    - "$PWD/../repos/labofolio/app.js:/usr/src/app/app.js"
+    - "$PWD/../repos/labofolio/package.json:/usr/src/app/package.json"
+    - "$PWD/../repos/labofolio/package-lock.json:/usr/src/app/package-lock.json"
+    ports:
+    - 3002:3000
+    hostname: local-web2
+    depends_on:
+      - local-store
+    environment:
+    - SERVICE_PORT=3000
+    - SERVICE_ENV=local
+    - SERVICE_MODE=api
+
+  web3:
+    build: ../repos/labofolio
+    volumes:
+    - "$PWD/../repos/labofolio/api:/usr/src/app/api"
+    - "$PWD/../repos/labofolio/core:/usr/src/app/core"
+    - "$PWD/../repos/labofolio/app.js:/usr/src/app/app.js"
+    - "$PWD/../repos/labofolio/package.json:/usr/src/app/package.json"
+    - "$PWD/../repos/labofolio/package-lock.json:/usr/src/app/package-lock.json"
+    ports:
+    - 3003:3000
+    hostname: local-web3
+    depends_on:
+    - local-store
+    environment:
+    - SERVICE_PORT=3000
+    - SERVICE_ENV=local
+    - SERVICE_MODE=api
+
   local-store:
-    build: mysql
+    build: mysql/master
     volumes:
     - "$PWD/../mysql/mysql_data:/var/lib/mysql"
     mem_limit: 536870912
@@ -34,3 +70,17 @@ services:
     - MYSQL_USER=foway
     - MYSQL_PASSWORD=qwerty
     - MYSQL_DATABASE=sample
+
+  local-nginx:
+    build: nginx
+    image: foway/nginx
+    ports:
+    - 3000:80
+    depends_on:
+    - web1
+    - web2
+    - web3
+    links:
+    - web1:local-web1
+    - web2:local-web2
+    - web3:local-web3
