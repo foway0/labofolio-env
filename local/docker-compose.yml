@@ -25,7 +25,7 @@ services:
     - 3002:3000
     hostname: local-web2
     depends_on:
-    - local-store
+    - web1
     environment:
     - SERVICE_PORT=3000
     - SERVICE_ENV=local
@@ -37,7 +37,7 @@ services:
     - 3003:3000
     hostname: local-web3
     depends_on:
-    - local-store
+    - web2
     environment:
     - SERVICE_PORT=3000
     - SERVICE_ENV=local
@@ -62,7 +62,7 @@ services:
   local-store-slave:
     build: mysql/slave
     volumes:
-    - "$PWD/../mysql/mysql_data:/var/lib/mysql"
+    - "$PWD/../mysql/mysql_data_slave:/var/lib/mysql"
     mem_limit: 536870912
     image: foway/store-slave
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
@@ -73,6 +73,9 @@ services:
     - local-store
     environment:
     - MYSQL_ROOT_PASSWORD=password
+    - MYSQL_USER=foway
+    - MYSQL_PASSWORD=qwerty
+    - MYSQL_DATABASE=sample
 
   local-nginx:
     build: nginx

@@ -12,3 +12,8 @@
 
 - CREATE TABLE repltable ( no INT(8), PRIMARY KEY (no) );
 - INSERT INTO repltable VALUES (1);
+
+## dump
+
+- mysqldump -h 0.0.0.0 -u root -p sample > hoge.sql
+- mysql -h 0.0.0.0 -P 13306 -uroot -p sample < hoge.sql
