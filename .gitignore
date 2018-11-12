@@ -5,3 +5,6 @@
 /repos/*
 !/repos/repos.sh
 !/repos/repos.conf
+
+# mysql
+mysql
