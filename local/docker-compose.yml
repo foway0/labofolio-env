@@ -54,6 +54,7 @@ services:
     ports:
     - 3306:3306
     environment:
+    - MYSQL_ROOT_USER=root
     - MYSQL_ROOT_PASSWORD=password
     - MYSQL_USER=foway
     - MYSQL_PASSWORD=qwerty
@@ -72,6 +73,7 @@ services:
     depends_on:
     - local-store
     environment:
+    - MYSQL_ROOT_USER=root
     - MYSQL_ROOT_PASSWORD=password
     - MYSQL_USER=foway
     - MYSQL_PASSWORD=qwerty

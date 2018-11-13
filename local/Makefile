@@ -5,8 +5,10 @@ all: help
 help: ## ヘルプ表示
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
+dressup-store-init: ##: docker store build && up
+	docker-compose -f docker-compose.store.yml up --build
 
-dressup-first: ##: docker build && up
+dressup-build: ##: docker build && up
 	docker-compose -f docker-compose.yml up --build
 
 dressup: ##: docker start

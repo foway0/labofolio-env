@@ -1,0 +1,38 @@
+version: '2'
+services:
+
+  local-store:
+    build: mysql/master
+    volumes:
+    - "$PWD/../mysql/mysql_data:/var/lib/mysql"
+    mem_limit: 536870912
+    image: foway/store
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    hostname: local-store
+    ports:
+    - 3306:3306
+    environment:
+    - MYSQL_ROOT_USER=root
+    - MYSQL_ROOT_PASSWORD=password
+    - MYSQL_USER=foway
+    - MYSQL_PASSWORD=qwerty
+    - MYSQL_DATABASE=sample
+
+  local-store-slave:
+    build: mysql/slave
+    volumes:
+    - "$PWD/../mysql/mysql_data_slave:/var/lib/mysql"
+    mem_limit: 536870912
+    image: foway/store-slave
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    hostname: local-store-slave
+    ports:
+    - 13306:3306
+    depends_on:
+    - local-store
+    environment:
+    - MYSQL_ROOT_USER=root
+    - MYSQL_ROOT_PASSWORD=password
+    - MYSQL_USER=foway
+    - MYSQL_PASSWORD=qwerty
+    - MYSQL_DATABASE=sample
