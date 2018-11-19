@@ -5,6 +5,7 @@ services:
     build: mysql/master
     volumes:
     - "$PWD/../mysql/mysql_data:/var/lib/mysql"
+    - "$PWD/../mysql/init/master.d:/docker-entrypoint-initdb.d"
     mem_limit: 536870912
     image: foway/store
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
@@ -22,6 +23,7 @@ services:
     build: mysql/slave
     volumes:
     - "$PWD/../mysql/mysql_data_slave:/var/lib/mysql"
+    - "$PWD/../mysql/init/slave.d:/docker-entrypoint-initdb.d"
     mem_limit: 536870912
     image: foway/store-slave
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci

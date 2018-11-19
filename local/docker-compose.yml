@@ -14,39 +14,41 @@ services:
     hostname: local-web1
     depends_on:
     - local-store
+    - local-store-slave
     environment:
     - SERVICE_PORT=3000
     - SERVICE_ENV=local
     - SERVICE_MODE=api
 
-  web2:
-    image: foway/web
-    ports:
-    - 3002:3000
-    hostname: local-web2
-    depends_on:
-    - web1
-    environment:
-    - SERVICE_PORT=3000
-    - SERVICE_ENV=local
-    - SERVICE_MODE=api
+  #web2:
+  #  image: foway/web
+  #  ports:
+  #  - 3002:3000
+  #  hostname: local-web2
+  #  depends_on:
+  #  - web1
+  #  environment:
+  #  - SERVICE_PORT=3000
+  #  - SERVICE_ENV=local
+  #  - SERVICE_MODE=api
 
-  web3:
-    image: foway/web
-    ports:
-    - 3003:3000
-    hostname: local-web3
-    depends_on:
-    - web2
-    environment:
-    - SERVICE_PORT=3000
-    - SERVICE_ENV=local
-    - SERVICE_MODE=api
+  #web3:
+  #  image: foway/web
+  #  ports:
+  #  - 3003:3000
+  #  hostname: local-web3
+  #  depends_on:
+  #  - web2
+  #  environment:
+  #  - SERVICE_PORT=3000
+  #  - SERVICE_ENV=local
+  #  - SERVICE_MODE=api
 
   local-store:
     build: mysql/master
     volumes:
     - "$PWD/../mysql/mysql_data:/var/lib/mysql"
+    - "$PWD/../mysql/init/master.d:/docker-entrypoint-initdb.d"
     mem_limit: 536870912
     image: foway/store
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
@@ -64,6 +66,7 @@ services:
     build: mysql/slave
     volumes:
     - "$PWD/../mysql/mysql_data_slave:/var/lib/mysql"
+    - "$PWD/../mysql/init/slave.d:/docker-entrypoint-initdb.d"
     mem_limit: 536870912
     image: foway/store-slave
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
@@ -86,9 +89,9 @@ services:
     - 3000:80
     depends_on:
     - web1
-    - web2
-    - web3
+    #- web2
+    #- web3
     links:
     - web1:local-web1
-    - web2:local-web2
-    - web3:local-web3
+    #- web2:local-web2
+    #- web3:local-web3

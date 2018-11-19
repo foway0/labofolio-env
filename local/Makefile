@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+containers=`docker ps -a -q`
+
 all: help
 
 help: ## ヘルプ表示
@@ -22,3 +24,12 @@ clean-image: ##: docker remove unused images
 
 clean-container: ##: docker remove all stopped containers
 	docker container prune -f
+
+kill-all: ##: stop all containers
+	docker stop ${containers}
+
+rm-all: ##: Delete all containers
+	docker rm ${containers}
+
+rmi-all: ##: docker rmi all
+	docker rmi ${containers}
