@@ -1,0 +1,10 @@
+# IDE
+.idea
+
+# repos
+/repos/*
+!/repos/repos.conf
+!/repos/repos.sh
+
+# backup
+backup
