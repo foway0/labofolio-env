@@ -13,11 +13,15 @@ services:
       - local-store
     volumes:
       - "$PWD/repos/labofolio/index.js:/usr/src/app/index.js"
+      - "$PWD/repos/labofolio/shared:/usr/src/app/shared"
     environment:
+      - SERVICE_ENV=local
+      - SERVICE_MODE=web-api
       - SERVICE_PORT=3000
       - MYSQL_HOST=local-store
       - MYSQL_PORT=3306
 
+  # TODO replica ???
   local-store:
     build: extends/mysql
     volumes:
