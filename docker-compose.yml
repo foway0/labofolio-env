@@ -13,6 +13,7 @@ services:
     volumes:
       - "$PWD/repos/labofolio/index.js:/usr/src/app/index.js"
       - "$PWD/repos/labofolio/shared:/usr/src/app/shared"
+      - "$PWD/repos/labofolio/utils:/usr/src/app/utils"
     environment:
       - SERVICE_ENV=local
       - SERVICE_MODE=web-api
