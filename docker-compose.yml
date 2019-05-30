@@ -17,6 +17,7 @@ services:
       - "$PWD/repos/labofolio/core:/usr/src/app/core"
       - "$PWD/repos/labofolio/mode:/usr/src/app/mode"
       - "$PWD/repos/labofolio/tools:/usr/src/app/tools"
+      - "$PWD/repos/labofolio/services:/usr/src/app/services"
     environment:
       - SERVICE_ENV=local
       - SERVICE_MODE=web-api
