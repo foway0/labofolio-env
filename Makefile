@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-__PWD=$(shell pwd)
 __REPOS_SH="repos/repos.sh"
+__LINUX="extends/linux/build.sh"
 
 all: help
 
@@ -15,6 +15,7 @@ clean: ##: 初期状態にリセット
 	$(__REPOS_SH) clean
 
 build: ##: docker build
+	$(__LINUX)
 	docker-compose -f docker-compose.yml up --build
 
 dressup: ##: docker start
