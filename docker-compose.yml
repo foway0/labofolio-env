@@ -6,6 +6,7 @@ services:
   local-web-api:
     build: repos/labofolio
     image: foway/web-api
+    hostname: local-web-api
     ports:
       - 3000:3000
       - 53000:53000
@@ -28,9 +29,20 @@ services:
       - local-store
 
   #########################
+  # Proxy Server
+  #########################
+  local-nginx:
+    build: extends/nginx
+    image: foway/nginx
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - local-web-api
+
+  #########################
   # DEPENDENCIES DATA STORE
   #########################
-  # TODO replica ???
   local-store:
     build: extends/mysql
     image: foway/mysql
