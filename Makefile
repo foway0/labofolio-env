@@ -20,3 +20,6 @@ build: ##: docker build
 
 dressup: ##: docker start
 	docker-compose -f docker-compose.yml up
+
+restart: ##: docker start
+	docker-compose -f docker-compose.yml restart
