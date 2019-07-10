@@ -20,6 +20,7 @@ services:
       - "$PWD/repos/labofolio/tools:/usr/src/app/tools"
       - "$PWD/repos/labofolio/services:/usr/src/app/services"
       - "$PWD/repos/labofolio/middlewares:/usr/src/app/middlewares"
+    env_file: .env
     environment:
       - SERVICE_ENV=local
       - SERVICE_MODE=web-api

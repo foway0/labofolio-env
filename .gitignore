@@ -1,6 +1,9 @@
 # IDE
 .idea
 
+# env
+.env
+
 # repos
 /repos/*
 !/repos/repos.conf
