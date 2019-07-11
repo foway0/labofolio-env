@@ -14,19 +14,18 @@ services:
     volumes:
       - "$PWD/repos/labofolio/index.js:/usr/src/app/index.js"
       - "$PWD/repos/labofolio/shared:/usr/src/app/shared"
-      - "$PWD/repos/labofolio/utils:/usr/src/app/utils"
       - "$PWD/repos/labofolio/core:/usr/src/app/core"
       - "$PWD/repos/labofolio/mode:/usr/src/app/mode"
       - "$PWD/repos/labofolio/tools:/usr/src/app/tools"
       - "$PWD/repos/labofolio/services:/usr/src/app/services"
-      - "$PWD/repos/labofolio/middlewares:/usr/src/app/middlewares"
-    env_file: .env
+      - "$PWD/repos/labofolio/middleware:/usr/src/app/middleware"
+    env_file:
+      - .env
     environment:
+      - SERVICE_HOST=local-web-api
       - SERVICE_ENV=local
       - SERVICE_MODE=web-api
       - SERVICE_PORT=3000
-      - MYSQL_HOST=local-store
-      - MYSQL_PORT=3306
     depends_on:
       - local-store
 
@@ -56,9 +55,5 @@ services:
     volumes:
       - "$PWD/backup/mysql/mysql_data:/var/lib/mysql"
       - "$PWD/backup/mysql/init/master.d:/docker-entrypoint-initdb.d"
-    environment:
-      - MYSQL_ROOT_USER=root
-      - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_USER=foway
-      - MYSQL_PASSWORD=qwerty
-      - MYSQL_DATABASE=sample
+    env_file:
+      - mysql.env

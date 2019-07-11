@@ -3,6 +3,7 @@
 
 # env
 .env
+mysql.env
 
 # repos
 /repos/*
