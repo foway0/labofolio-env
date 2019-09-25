@@ -9,8 +9,7 @@
 mysql.env
 
 # extends ssl
-extends/ssl
-extends/nginx/*.pem
+*.pem
 
 # repos
 /repos/*

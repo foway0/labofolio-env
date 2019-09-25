@@ -114,8 +114,8 @@ EXPOSE 80
 STOPSIGNAL SIGTERM
 
 RUN mkdir -p /etc/nginx/ssl
-COPY fullchain.pem /etc/nginx/ssl/server.crt
-COPY privkey.pem /etc/nginx/ssl/server.key
+COPY ../../fullchain.pem /etc/nginx/ssl/server.crt
+COPY ../../privkey.pem /etc/nginx/ssl/server.key
 COPY nginx.conf /etc/nginx/nginx.conf
 
 CMD ["nginx", "-g", "daemon off;"]

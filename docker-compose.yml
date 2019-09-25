@@ -1,4 +1,4 @@
-version: "2.4"
+version: "2.0"
 
 services:
 
@@ -22,10 +22,6 @@ services:
     env_file:
       - .env
     environment:
-      - SERVICE_HOST=local-web-api
-      - SERVICE_ENV=local
-      - SERVICE_MODE=web-api
-      - SERVICE_PORT=3000
       - SSL_KEY=${SSL_KEY}
       - SSL_CERT=${SSL_CERT}
     depends_on:

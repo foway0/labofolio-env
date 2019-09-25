@@ -18,8 +18,15 @@ build: ##: docker build
 	$(__LINUX)
 	docker-compose -f docker-compose.yml up --build
 
+build-detach: ##: docker build detach mode
+	$(__LINUX)
+	docker-compose -f docker-compose.yml up --build -d
+
 dressup: ##: docker start
 	docker-compose -f docker-compose.yml up
+
+dressup-detach: ##: docker start detach mode
+	docker-compose -f docker-compose.yml up -d
 
 restart: ##: docker start
 	docker-compose -f docker-compose.yml restart
