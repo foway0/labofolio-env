@@ -1,0 +1,14 @@
+version: "2.0"
+services:
+  api:
+    build: repos/labofolio
+    image: foway/api
+    hostname: local-api
+    ports:
+      - 3000:3000
+    mem_limit: 256m
+    volumes:
+      - "$PWD/repos/labofolio/.env:/usr/src/app/.env"
+      - "$PWD/repos/labofolio/tsconfig.json:/usr/src/app/tsconfig.json"
+      - "$PWD/repos/labofolio/src:/usr/src/app/src"
+      - "$PWD/repos/labofolio/test:/usr/src/app/test"

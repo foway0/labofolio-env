@@ -7,3 +7,9 @@ help: ## ヘルプ表示
 
 init: ##: 初回セットアップ
 	$(__REPOS_SH)
+
+build: ##: docker build
+	docker-compose -f docker-compose.yml up --build
+
+dressup: ##: docker start
+	docker-compose -f docker-compose.yml up
