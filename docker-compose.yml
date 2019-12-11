@@ -3,7 +3,7 @@ services:
   api:
     build: repos/labofolio
     image: foway/api
-    hostname: local-api
+    container_name: local-api
     ports:
       - 3000:3000
     mem_limit: 256m
@@ -12,3 +12,16 @@ services:
       - "$PWD/repos/labofolio/tsconfig.json:/usr/src/app/tsconfig.json"
       - "$PWD/repos/labofolio/src:/usr/src/app/src"
       - "$PWD/repos/labofolio/test:/usr/src/app/test"
+    networks:
+      default:
+        aliases:
+          - local-api
+
+  nginx:
+    build: extends/nginx
+    image: foway/nginx
+    container_name: local-nginx
+    ports:
+      - 443:443
+    depends_on:
+      - api
