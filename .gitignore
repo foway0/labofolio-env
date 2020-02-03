@@ -13,8 +13,8 @@ repos/*
 *.pem
 
 # env
-.env
-.env.mysql
+/.env
+/.env.mysql
 
 # backup
 backup

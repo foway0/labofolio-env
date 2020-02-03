@@ -13,3 +13,6 @@ build: ##: docker build
 
 dressup: ##: docker start
 	docker-compose -f docker-compose.yml up
+
+setup: ##: cp env file
+	cp -ir ./env_template/ .
