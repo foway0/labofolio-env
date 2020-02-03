@@ -8,14 +8,18 @@ services:
       - 3000:3000
     mem_limit: 256m
     volumes:
-      - "$PWD/repos/labofolio/.env:/usr/src/app/.env"
       - "$PWD/repos/labofolio/tsconfig.json:/usr/src/app/tsconfig.json"
+      - "$PWD/repos/labofolio/package.json:/usr/src/app/package.json"
       - "$PWD/repos/labofolio/src:/usr/src/app/src"
       - "$PWD/repos/labofolio/test:/usr/src/app/test"
     networks:
       default:
         aliases:
           - local-api
+    depends_on:
+      - mysql
+    env_file:
+      - .env
 
   nginx:
     build: extends/nginx
@@ -25,3 +29,19 @@ services:
       - 443:443
     depends_on:
       - api
+
+  mysql:
+    build: extends/mysql
+    image: foway/mysql
+    container_name: local-mysql
+    ports:
+      - 3306:3306
+    mem_limit: 512m
+    volumes:
+      - "$PWD/backup/mysql:/var/lib/mysql"
+    networks:
+      default:
+        aliases:
+          - local-mysql
+    env_file:
+      - .env.mysql

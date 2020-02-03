@@ -11,3 +11,10 @@ repos/*
 
 # ssl
 *.pem
+
+# env
+.env
+.env.mysql
+
+# backup
+backup
