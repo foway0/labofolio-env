@@ -21,6 +21,28 @@ services:
     env_file:
       - .env.api
 
+  admin:
+    build: repos/labofolio
+    image: foway/admin
+    container_name: local-admin
+    ports:
+    - 3001:3001
+    mem_limit: 256m
+    volumes:
+      - "$PWD/repos/labofolio/tsconfig.json:/usr/src/app/tsconfig.json"
+      - "$PWD/repos/labofolio/package.json:/usr/src/app/package.json"
+      - "$PWD/repos/labofolio/src:/usr/src/app/src"
+      - "$PWD/repos/labofolio/test:/usr/src/app/test"
+    networks:
+      default:
+        aliases:
+          - local-admin
+    depends_on:
+      - mysql
+    env_file:
+      - .env.admin
+
+
   nginx:
     build: extends/nginx
     image: foway/nginx

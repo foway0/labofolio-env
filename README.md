@@ -10,6 +10,11 @@ make setup
 make dressup
 ```
 
+## hostfile
+
+127.0.0.1 local-api.labofolio.com
+127.0.0.1 local-admin.labofolio.com
+
 ## Makefile command
 
 See [Makefile](https://github.com/foway0/labofolio-env/blob/master/Makefile)
