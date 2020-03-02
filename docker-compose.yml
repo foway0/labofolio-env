@@ -1,17 +1,17 @@
 version: "2.0"
 services:
   api:
-    build: repos/labofolio
-    image: foway/api
+    build: repos/labofolio-api
+    image: foway/labofolio-api
     container_name: local-api
+    command: npm run dev
     ports:
       - 3000:3000
     mem_limit: 256m
     volumes:
-      - "$PWD/repos/labofolio/tsconfig.json:/usr/src/app/tsconfig.json"
-      - "$PWD/repos/labofolio/package.json:/usr/src/app/package.json"
-      - "$PWD/repos/labofolio/src:/usr/src/app/src"
-      - "$PWD/repos/labofolio/test:/usr/src/app/test"
+      - "$PWD/repos/labofolio-api/tsconfig.json:/usr/src/app/tsconfig.json"
+      - "$PWD/repos/labofolio-api/package.json:/usr/src/app/package.json"
+      - "$PWD/repos/labofolio-api/src:/usr/src/app/src"
     networks:
       default:
         aliases:
@@ -21,31 +21,9 @@ services:
     env_file:
       - .env.api
 
-  admin:
-    build: repos/labofolio
-    image: foway/admin
-    container_name: local-admin
-    ports:
-    - 3001:3001
-    mem_limit: 256m
-    volumes:
-      - "$PWD/repos/labofolio/tsconfig.json:/usr/src/app/tsconfig.json"
-      - "$PWD/repos/labofolio/package.json:/usr/src/app/package.json"
-      - "$PWD/repos/labofolio/src:/usr/src/app/src"
-      - "$PWD/repos/labofolio/test:/usr/src/app/test"
-    networks:
-      default:
-        aliases:
-          - local-admin
-    depends_on:
-      - mysql
-    env_file:
-      - .env.admin
-
-
   nginx:
     build: extends/nginx
-    image: foway/nginx
+    image: foway/labofolio-nginx
     container_name: local-nginx
     ports:
       - 443:443
@@ -56,6 +34,7 @@ services:
     build: extends/mysql
     image: foway/mysql
     container_name: local-mysql
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
     ports:
       - 3306:3306
     mem_limit: 512m
