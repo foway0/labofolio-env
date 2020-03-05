@@ -18,6 +18,7 @@ services:
           - local-api
     depends_on:
       - mysql
+      - redis
     env_file:
       - .env.api
 
@@ -46,3 +47,20 @@ services:
           - local-mysql
     env_file:
       - .env.mysql
+
+  redis:
+    build: extends/redis
+    image: foway/redis
+    container_name: local-redis
+    #command: redis-cluster
+    ports:
+      - 7000:7000
+      - 7001:7001
+      - 7002:7002
+      - 7003:7003
+      - 7004:7004
+      - 7005:7005
+    networks:
+      default:
+        aliases:
+          - local-redis
