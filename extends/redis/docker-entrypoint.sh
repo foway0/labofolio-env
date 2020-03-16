@@ -2,6 +2,8 @@
 
 cluster_conf_file=redis-cluster.conf
 
+rm -rf /redis-data/*
+
 for port in 7000 7001 7002 7003 7004 7005;
 do
   conf_path=/redis-conf/${port}
