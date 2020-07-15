@@ -20,6 +20,7 @@ make dressup
 See [Makefile](https://github.com/foway0/labofolio-env/blob/master/Makefile)
 
 ## file tree
+```
 └── labofolio-env
     ├── Makefile
     ├── README.md
@@ -39,3 +40,4 @@ See [Makefile](https://github.com/foway0/labofolio-env/blob/master/Makefile)
     └── repos
         ├── repos.conf
         └── repos.sh
+```
