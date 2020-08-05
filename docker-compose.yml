@@ -22,6 +22,24 @@ services:
     env_file:
       - .env.api
 
+  bff:
+    build: repos/labofolio-bff
+    image: foway/labofolio-bff
+    container_name: local-bff
+    command: go run main.go
+    ports:
+      - 3001:3000
+    mem_limit: 256m
+    volumes:
+      - "$PWD/repos/labofolio-bff/main.go:/usr/src/app/main.go"
+    networks:
+      default:
+        aliases:
+          - local-bff
+    depends_on:
+      - mysql
+      - redis
+
   nginx:
     build: extends/nginx
     image: foway/labofolio-nginx
