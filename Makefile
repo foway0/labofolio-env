@@ -12,7 +12,7 @@ build: ##: docker build
 	docker-compose -f docker-compose.yml up --build
 
 dressup: ##: docker start
-	docker-compose -f docker-compose.yml up
+	docker-compose -f docker-compose.yml up --remove-orphans
 
 setup: ##: cp env file
 	cp -ir ./env_template/ .

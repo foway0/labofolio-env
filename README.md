@@ -13,7 +13,7 @@ make dressup
 ## hostfile
 
 127.0.0.1 local-api.labofolio.com
-127.0.0.1 local-admin.labofolio.com
+127.0.0.1 local-bff.labofolio.com
 
 ## Makefile command
 
