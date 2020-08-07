@@ -9,10 +9,16 @@ init: ##: 初回セットアップ
 	$(__REPOS_SH)
 
 build: ##: docker build
-	docker-compose -f docker-compose.yml up --build
+	docker-compose -f docker-compose.yml build --no-cache
 
 dressup: ##: docker start
 	docker-compose -f docker-compose.yml up --remove-orphans
+
+dressup-store: ## docker store
+	docker-compose -f docker-compose.yml up --remove-orphans mysql redis
+
+dressup-store-detached: ## docker store detach mode
+	docker-compose -f docker-compose.yml up --remove-orphans -d mysql redis
 
 setup: ##: cp env file
 	cp -ir ./env_template/ .
