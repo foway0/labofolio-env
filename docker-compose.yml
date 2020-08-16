@@ -32,6 +32,7 @@ services:
     mem_limit: 256m
     volumes:
       - "$PWD/repos/labofolio-bff/main.go:/usr/src/app/main.go"
+      - "$PWD/repos/labofolio-bff/src:/usr/src/app/src"
     networks:
       default:
         aliases:
@@ -39,6 +40,8 @@ services:
     depends_on:
       - mysql
       - redis
+    env_file:
+      - .env.bff
 
   nginx:
     build: extends/nginx
