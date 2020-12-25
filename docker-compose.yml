@@ -1,0 +1,16 @@
+version: '3'
+services:
+  web-bff:
+    build: repos/web-bff
+    image: foway/labofolio-web-bff
+    container_name: web-bff
+    command: npm run dev
+    ports:
+      - 3000:3000
+    mem_limit: 256m
+    volumes:
+      - "$PWD/repos/web-bff/tsconfig.json:/usr/src/app/tsconfig.json"
+      - "$PWD/repos/web-bff/package.json:/usr/src/app/package.json"
+      - "$PWD/repos/web-bff/src:/usr/src/app/src"
+    env_file:
+      - .env.web-bff
