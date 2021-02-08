@@ -27,4 +27,4 @@ services:
       - "$PWD/repos/api/main.go:/usr/src/app/main.go"
       - "$PWD/repos/api/go.mod:/usr/src/app/go.mod"
       - "$PWD/repos/api/go.sum:/usr/src/app/go.sum"
-      - "$PWD/repos/api/grpc_spec:/usr/src/app/grpc_spec"
+      - "$PWD/repos/api/grpc_specs:/usr/src/app/grpc_specs"
