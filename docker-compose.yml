@@ -14,3 +14,17 @@ services:
       - "$PWD/repos/web-bff/src:/usr/src/app/src"
     env_file:
       - .env.web-bff
+
+  api:
+    build: repos/api
+    image: foway/labofolio-api
+    container_name: api
+    command: go run main.go
+    ports:
+    - 4000:4000
+    mem_limit: 256m
+    volumes:
+      - "$PWD/repos/api/main.go:/usr/src/app/main.go"
+      - "$PWD/repos/api/go.mod:/usr/src/app/go.mod"
+      - "$PWD/repos/api/go.sum:/usr/src/app/go.sum"
+      - "$PWD/repos/api/grpc_spec:/usr/src/app/grpc_spec"
