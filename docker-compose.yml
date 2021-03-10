@@ -21,7 +21,7 @@ services:
     container_name: api
     command: go run main.go
     ports:
-    - 4000:4000
+    - 3001:3001
     mem_limit: 256m
     volumes:
       - "$PWD/repos/api/main.go:/usr/src/app/main.go"
