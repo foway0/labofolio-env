@@ -1,0 +1,13 @@
+# mac
+.DS_Store
+
+# IDE
+.idea
+
+# repos
+repos/*
+!repos/repos.conf
+!repos/repos.sh
+
+# env
+/.env.*
